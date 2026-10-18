@@ -50,7 +50,7 @@ export function writeLinerNotes(days, settings) {
   const music = [`${palette.name} gives this ${settings.duration}-second piece ${palette.sound} and ${density} pulse. Each calendar day becomes one main note.`];
   const melodyCount = notesValues(days, 'color').length;
   if (!melodyCount) {
-    music.push('The selected melody input is unavailable, so the melody uses a neutral pitch rather than inventing an emotional story.');
+    music.push(settings.melody==='none'?'With no signal assigned to melody, the piece stays on a neutral pitch.':'The selected melody input is unavailable, so the melody uses a neutral pitch rather than inventing an emotional story.');
   } else {
     const labels = {mood:'recorded mood',hrv:'HRV relative to its reference',sleep:'sleep relative to your chosen target'};
     const low = Math.min(...notesValues(days, 'color')), high = Math.max(...notesValues(days, 'color'));

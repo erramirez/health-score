@@ -196,3 +196,59 @@ dialog p { font-size: 12px; color: #62715b; line-height: 1.8; margin-bottom: 22p
 .notes-limits { border-top: 1px solid #82957226; padding-top: 20px; margin: 25px 0 0; color: #5d7053; font-size: 10px; line-height: 1.9; }
 @media (max-width: 850px) { .liner-header { align-items: flex-start; flex-direction: column; gap: 25px; }.liner-action { align-items: flex-start; }.liner-lead { max-width: 100%; }.notes-reading { grid-template-columns: 1fr; gap: 27px; }.notes-reading > section:last-child { border-left: 0; border-top: 1px solid #82957226; padding-left: 0; padding-top: 24px; } }
 @media (max-width: 520px) { .liner-notes { margin-top: 35px; padding: 28px 23px; border-radius: 18px; }.liner-lead h2 { font-size: 30px; letter-spacing: -1.3px; }.liner-lead .eyebrow { font-size: 8px; }.liner-local { font-size: 8px; }.notes-reading { grid-template-columns: 1fr; gap: 27px; }.notes-reading > section:last-child { border-left: 0; border-top: 1px solid #82957226; padding-left: 0; padding-top: 24px; }.notes-source { margin-left: 0; }.notes-output h3 { font-size: 26px; margin-bottom: 25px; }.notes-reading p { font-size: 11px; }.notes-meta { font-size: 9px; } }
+
+/* Import is the first task; the studio appears only after a confirmed source. */
+[hidden] { display: none !important; }
+.onboarding { grid-template-columns: minmax(0, 1fr) minmax(330px, .86fr); align-items: center; gap: 56px; padding: 55px 0 32px; }
+.onboarding h1 { font-size: clamp(52px, 6.2vw, 91px); letter-spacing: -.07em; line-height: 1.04; }
+.onboarding-copy { max-width: 420px; margin: 27px 0 19px; color: #61705b; font-size: 15px; line-height: 1.85; }
+.onboarding-privacy { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #5d7450; margin: 0; }
+.start-card { min-width: 0; padding: 27px 29px 22px; background: #fdfefa; border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); }
+.start-card > .eyebrow { font-size: 9px; color: #6b7b60; }
+.start-card h2 { font-size: 27px; letter-spacing: -1px; line-height: 1.15; font-weight: 520; margin: 12px 0 14px; }
+.start-card > p { font-size: 12px; line-height: 1.8; color: #63735b; margin-bottom: 21px; }
+.drop-zone { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 21px 17px 19px; background: #eff3e9; border: 1px dashed #b7c6aa; border-radius: 13px; transition: border-color .25s ease-in-out, background .25s ease-in-out; }
+.drop-zone.is-dragging { background: #e1ebd5; border-color: #6b8a54; }
+.drop-mark { font-size: 25px; line-height: 1; color: #738c60; }
+.drop-zone .button { min-height: 46px; font-size: 12px; }
+.drop-hint { font-size: 10px; color: #637758; text-align: center; }
+.file-help { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 18px; }
+.file-help summary { cursor: pointer; font-size: 11px; font-weight: 550; color: #4d6541; padding-block: 3px; list-style-position: inside; }
+.file-help summary:hover { color: #293e24; }
+.file-help summary:focus-visible { outline: 2px solid #7d9675; outline-offset: 4px; }
+.file-help > div { padding: 9px 0 0; }
+.file-help p { font-size: 11px; color: #63735b; line-height: 1.85; margin: 12px 0 16px; }
+.file-help strong { color: #415837; font-weight: 550; }
+.file-help code { font-size: 10px; background: #edf2e5; border-radius: 3px; padding: 2px 4px; }
+.demo-option { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: 17px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 10px; color: #6c7b63; }
+.demo-option .text-button { font-size: 11px; white-space: nowrap; }
+.import-feedback { font-size: 11px !important; margin: 13px 0 0 !important; color: #536e43 !important; }
+.import-feedback:empty, .import-error:empty, .flow-status:empty { display: none; }
+.import-feedback.is-error, .import-error { color: #8d4d3b !important; }
+.import-error { background: #f8ede7; padding: 11px 13px; border-radius: 9px; font-size: 12px; line-height: 1.7; }
+.flow-steps { margin: 10px 0 34px; padding: 20px 0 0; display: flex; gap: 30px; border-top: 1px solid var(--line); list-style: none; }
+.flow-steps li { display: flex; align-items: center; gap: 10px; color: #6c7866; font-size: 11px; }
+.flow-steps li > span { display: inline-grid; place-items: center; border: 1px solid #d5ddce; width: 26px; height: 26px; border-radius: 50%; color: #6d7e61; font-size: 9px; }
+.flow-steps li[aria-current] { color: #314b27; font-weight: 600; }
+.flow-steps li[aria-current] > span { color: #f5f9ee; background: #547044; border-color: #547044; }
+.flow-steps .is-complete > span { background: #e3ecd8; border-color: #e3ecd8; color: #48643a; }
+.dataset-bar { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 23px 27px; margin-bottom: 23px; background: #e9f0e1; border: 1px solid var(--line); border-radius: 16px; scroll-margin-top: 24px; }
+.dataset-bar > div:first-child { min-width: 0; }
+.dataset-bar .eyebrow { font-size: 9px; color: #536e43; }
+.dataset-bar p { margin: 7px 0 0; font-size: 12px; line-height: 1.7; color: #405535; }
+.dataset-bar[data-source=demo] { background: #f3eee3; }
+.dataset-bar[data-source=demo] .eyebrow { color: #796944; }
+.dataset-actions { display: flex; align-items: center; flex-shrink: 0; gap: 19px; }
+.dataset-actions .button { font-size: 11px; padding: 11px 14px; }
+.dataset-actions .text-button { font-size: 10px; }
+.dataset-signals { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+.dataset-signals span { padding: 3px 6px; border-radius: 4px; border: 1px solid #a5b79655; font-size: 8px; color: #526a45; }
+.flow-status { margin: 0 3px 20px; }
+.how-it-works { grid-template-columns: .9fr 1fr 1fr 1fr; margin: 45px 0 35px; }
+.how-it-works .summary-heading { padding-left: 0; }
+.how-it-works .summary-heading h2 { font-size: 32px; max-width: none; }
+.how-it-works .mapping-tile { min-height: 180px; }
+.column-sample { font-size: 10px; font-weight: 400; color: #6b7c60; overflow-wrap: anywhere; line-height: 1.6; }
+@media (max-width: 1100px) { .onboarding { gap: 30px; }.onboarding h1 { font-size: clamp(51px, 6vw, 76px); }.onboarding-copy { font-size: 13px; }.start-card { padding-inline: 24px; }.how-it-works { grid-template-columns: 1fr 1fr; }.dataset-actions { gap: 13px; } }
+@media (max-width: 850px) { .onboarding { grid-template-columns: 1fr; padding: 39px 0 25px; gap: 30px; }.onboarding h1 { font-size: clamp(52px, 8vw, 73px); }.onboarding-copy { max-width: 500px; margin: 21px 0 15px; }.start-card { padding: 25px; }.start-card > p { max-width: 480px; }.drop-zone { padding: 20px; }.drop-mark { display: none; }.flow-steps { gap: 22px; margin-bottom: 28px; }.dataset-bar { align-items: flex-start; flex-direction: column; gap: 18px; }.dataset-actions { width: 100%; justify-content: space-between; } }
+@media (max-width: 520px) { .onboarding { gap: 25px; padding-top: 30px; }.onboarding h1 { font-size: clamp(43px, 11.7vw, 61px); margin-top: 21px; letter-spacing: -.07em; }.onboarding-main .eyebrow, .onboarding .intro-main .eyebrow { font-size: 7px; letter-spacing: 1px; }.onboarding-copy { font-size: 12px; margin-top: 18px; line-height: 1.8; }.onboarding-privacy { font-size: 9px; gap: 6px; }.start-card { padding: 23px 20px 20px; border-radius: 17px; }.start-card h2 { font-size: 25px; }.start-card > p { font-size: 11px; margin-bottom: 17px; }.drop-zone { padding: 18px 13px; gap: 12px; }.drop-zone .button { width: 100%; font-size: 12px; }.drop-hint { font-size: 9px; }.demo-option { flex-direction: column; align-items: flex-start; gap: 7px; font-size: 10px; }.flow-steps { gap: 12px; justify-content: space-between; padding-top: 18px; }.flow-steps li { flex-direction: column; align-items: flex-start; gap: 8px; font-size: 9px; line-height: 1.5; }.flow-steps li > span { width: 24px; height: 24px; font-size: 8px; }.dataset-bar { padding: 21px; border-radius: 15px; }.dataset-bar p { font-size: 11px; }.dataset-actions .button { font-size: 10px; padding: 12px; }.dataset-actions .text-button { font-size: 9px; }.how-it-works { margin-top: 30px; gap: 12px; }.how-it-works .summary-heading { padding-left: 12px; }.how-it-works .summary-heading h2 { font-size: 28px; }.how-it-works .mapping-tile { min-height: 190px; }.how-it-works .number { font-size: 8px; }.flow-status { font-size: 11px; } }

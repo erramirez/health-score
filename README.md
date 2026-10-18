@@ -4,6 +4,10 @@ Your health data in musical form.
 
 A browser-local prototype that turns a calendar year of wearable measurements and recorded mood into a personal musical composition. Includes a deterministic synthetic demo, an interactive year timeline, local file mapping, live synthesis, and WAV export.
 
+## Import-first journey
+
+Version 0.4 makes personal data the primary task. The page starts empty with an above-the-fold file chooser, drag-and-drop, nearby file guidance, and an optional demo. A three-step indicator follows Add your data → Confirm your fields → Listen & explore. Mapping examples and validation errors are shown in the confirmation dialog. The current-data bar shows coverage, available signals, a replacement-file action, and session clearing. The initial year favors the most recorded days. Missing mood or activity fields receive available musical mappings or an explicit neutral/no-rhythm fallback, rather than silently selecting unavailable inputs. Reset uses those same available defaults. Internal home navigation scrolls to the start without discarding an active session; reload/exit starts empty.
+
 ## Visual direction
 
 Version 0.2 uses a system sans-serif stack (SF Pro on Apple devices), an off-white/sage palette, an asymmetrical listening-room and mixing-desk layout, and an editorial bento layout for the musical mappings. Font and icon assets stay local. Hover/focus/active transitions respect reduced-motion preferences. Controls, dialogs, and data cards reflow for smaller screens.
@@ -18,7 +22,7 @@ npm run dev
 
 Open the printed address: http://127.0.0.1:58431
 
-Press Play for the demo. Adjust the musical mappings, sound palette, sensitivity, and 30–180 second duration. Choose a month to audition it. The WAV download includes a short two-second release tail. The timeline is keyboard accessible: Tab to a day, then use Left/Right or Home/End.
+The first screen starts with your own data. Choose or drop a supported file, confirm its fields using the sample values, then press Play. The studio and liner notes appear only after a confirmed import or an explicit Explore the demo action. Adjust the musical mappings, sound palette, sensitivity, and 30–180 second duration. Choose a month to audition it. The WAV download includes a short two-second release tail. The timeline is keyboard accessible: Tab to a day, then use Left/Right or Home/End.
 
 ```sh
 npm test
@@ -106,9 +110,10 @@ The result exists only as temporary page text. It is removed when the compositio
 - `dist/audio.js`: synthesis and PCM WAV encoding
 - `dist/app.js`: session-only UI, transport, and liner-note lifecycle
 - `dist/liner-notes.js`: local musical descriptions and evidence-backed data observations
+- `dist/import-flow.js`: available signals, useful default mappings, and initial year selection
 - `server.mjs`: minimal local preview server
 - `tests/core.test.js`: import, calendar, physiology mapping, and audio format checks
 
 ## Verification
 
-Seventeen automated tests pass, including sparse-data, missing-mood, robust-trend, and local liner-note checks. Browser checks covered demo playback, actual WAV rendering/download, CSV mapping, leap-year coverage, month selection, musical-mapping changes, session clearing, and a 390 px phone layout without horizontal overflow. The exported synthetic demo WAV was checked for a valid format and non-silent samples. Apple XML aggregation was tested with chunked synthetic records, overlapping sleep, duplicate device sources, and HRV unit conversion. Liner-note browser checks also verified local generation, composition-change invalidation, sparse-import fallback, empty DOM content after Clear session, disabled generation without data, and an empty interpretation after reload. No full personal export or live provider API was available for testing.
+Twenty-two automated tests pass, including sparse-data, missing-mood, robust-trend, and local liner-note checks. Browser checks covered demo playback, actual WAV rendering/download, CSV mapping, leap-year coverage, month selection, musical-mapping changes, session clearing, and a 390 px phone layout without horizontal overflow. The exported synthetic demo WAV was checked for a valid format and non-silent samples. Apple XML aggregation was tested with chunked synthetic records, overlapping sleep, duplicate device sources, and HRV unit conversion. Liner-note browser checks also verified local generation, composition-change invalidation, sparse-import fallback, empty DOM content after Clear session, disabled generation without data, and an empty interpretation after reload. Import-first browser checks verified the initially hidden workspace, visible file action at desktop and phone sizes, value examples, missing-date correction, activity-only playback and reset, and complete clearing back to the first step. No full personal export or live provider API was available for testing.
