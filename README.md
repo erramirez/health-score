@@ -4,6 +4,10 @@ Your health data in musical form.
 
 A browser-local prototype that turns a calendar year of wearable measurements and recorded mood into a personal musical composition. Includes a deterministic synthetic demo, an interactive year timeline, local file mapping, live synthesis, and WAV export.
 
+## Visual direction
+
+Version 0.2 uses a system sans-serif stack (SF Pro on Apple devices), an off-white/sage palette, an asymmetrical listening-room and mixing-desk layout, and an editorial bento layout for the musical mappings. Font and icon assets stay local. Hover/focus/active transitions respect reduced-motion preferences. Controls, dialogs, and data cards reflow for smaller screens.
+
 ## Try it
 
 Requires Node.js 20 or newer. There are no package dependencies or install step.
