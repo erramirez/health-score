@@ -80,11 +80,21 @@ This is an artistic sonification, not a health score, diagnosis, or validated ph
 
 One day is one main musical event. Weekly/monthly structure is shown through the calendar timeline; a richer arrangement and explicit month transitions are future work. The musical curves and constants are creative heuristics. A personal baseline may reflect ongoing illness, medication, training, or other circumstances; the app makes no clinical inference.
 
+## Local liner notes
+
+Use **Write my liner notes** to generate a listening companion for the selected year or month. This is deterministic local writing, not an AI service. There is no API request, model download, prompt submission, or backend processing.
+
+The result separates the sound of the current composition from observations about the underlying recorded values. Musical descriptions follow the active palette, duration, melody, rhythm, and tension settings. Data observations use medians and explicit reading counts; missing measurements are never treated as zero. A signal needs at least seven readings and coverage of at least half the selected calendar days before it receives a data interpretation. Early/late comparisons use the first and last calendar thirds, each with at least seven readings and 50% coverage. Small-change filters (2 bpm for RHR, max(5 ms, 10%) for HRV, and max(500 steps/5 active minutes, 15%) for movement) avoid narrating trivial differences; these are writing heuristics, not clinical thresholds.
+
+Notes do not infer mood from physiology or establish causes, diagnoses, treatment, or fitness changes. Sleep is compared with the user's chosen target, not a universal medical target. Source/method consistency remains necessary for HRV. Demo results are visibly labeled synthetic.
+
+The result exists only as temporary page text. It is removed when the composition is rebuilt (period, year, mapping, duration, or sound changes), on Clear session, during page-exit cleanup, on a restored page, and at the existing inactivity reset. No notes history, storage, automatic export, or clipboard copy is created. Browser-controlled memory release is subject to the same limitations as imported data.
+
 ## Privacy and retention
 
 - No health data uploads, external assets, analytics, application network calls, cookies, localStorage, IndexedDB, or service workers.
-- Imported values and composition state remain in temporary JavaScript memory.
-- Clear session releases application references and resets the UI. Page exit attempts the same cleanup; restored pages clear again. Fifteen minutes without user interaction clears the session. Backgrounding pauses audio.
+- Imported values, composition state, and generated liner notes remain temporary session data.
+- Clear session removes generated notes, releases application references, and resets the UI. Page exit attempts the same cleanup; restored pages clear again. Fifteen minutes without user interaction clears the session. Backgrounding pauses audio.
 - Browser/OS memory management, swap, crash behavior, and secure erasure are outside the application's control. In-progress parsing/rendering may retain temporary data until the operation finishes. Closing a page is not a guarantee of immediate secure erasure.
 - Original files, downloaded WAVs, and CSVs remain on the user's device. The website does not delete them.
 - A hosting provider can retain ordinary access metadata such as IP addresses; imported health-file contents are not submitted to it.
@@ -94,10 +104,11 @@ One day is one main musical event. Weekly/monthly structure is shown through the
 - `dist/index.html`, `dist/style.css`: responsive studio and dialogs
 - `dist/core.js`: normalization, demo, mapping logic, CSV/Apple parsing
 - `dist/audio.js`: synthesis and PCM WAV encoding
-- `dist/app.js`: session-only UI and transport
+- `dist/app.js`: session-only UI, transport, and liner-note lifecycle
+- `dist/liner-notes.js`: local musical descriptions and evidence-backed data observations
 - `server.mjs`: minimal local preview server
 - `tests/core.test.js`: import, calendar, physiology mapping, and audio format checks
 
 ## Verification
 
-Nine automated tests pass. Browser checks covered demo playback, actual WAV rendering/download, CSV mapping, leap-year coverage, month selection, musical-mapping changes, session clearing, and a 390 px phone layout without horizontal overflow. The exported synthetic demo WAV was checked for a valid format and non-silent samples. Apple XML aggregation was tested with chunked synthetic records, overlapping sleep, duplicate device sources, and HRV unit conversion. No full personal export or live provider API was available for testing.
+Seventeen automated tests pass, including sparse-data, missing-mood, robust-trend, and local liner-note checks. Browser checks covered demo playback, actual WAV rendering/download, CSV mapping, leap-year coverage, month selection, musical-mapping changes, session clearing, and a 390 px phone layout without horizontal overflow. The exported synthetic demo WAV was checked for a valid format and non-silent samples. Apple XML aggregation was tested with chunked synthetic records, overlapping sleep, duplicate device sources, and HRV unit conversion. Liner-note browser checks also verified local generation, composition-change invalidation, sparse-import fallback, empty DOM content after Clear session, disabled generation without data, and an empty interpretation after reload. No full personal export or live provider API was available for testing.
